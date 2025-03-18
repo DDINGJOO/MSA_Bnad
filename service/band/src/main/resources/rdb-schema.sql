@@ -1,6 +1,6 @@
 CREATE TABLE band (
-                      band_id VARCHAR(64) PRIMARY KEY,
-                      leader_id VARCHAR(64) NOT NULL,
+                      band_id VARCHAR(26) PRIMARY KEY,
+                      leader_id VARCHAR(26) NOT NULL,
                       band_name VARCHAR(100) NOT NULL,
                       band_thumbnail TEXT,
                       category ENUM('ROCK', 'POP', 'INDIE', 'METAL', 'JAZZ', 'FUNK', 'BLUES', 'HIPHOP', 'CLASSIC', 'ETC') NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE band (
 
 CREATE TABLE band_recruit_position (
                                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                                       band_id VARCHAR(64) NOT NULL,
+                                       band_id VARCHAR(26) NOT NULL,
                                        position ENUM('VOCAL', 'GUITAR', 'BASS', 'DRUM', 'KEYBOARD', 'PRODUCER', 'ETC') NOT NULL,
                                        is_closed BOOLEAN DEFAULT FALSE,
                                        description VARCHAR(255),
@@ -20,8 +20,8 @@ CREATE TABLE band_recruit_position (
 );
 CREATE TABLE band_member (
                              id BIGINT AUTO_INCREMENT PRIMARY KEY,
-                             band_id VARCHAR(64) NOT NULL,
-                             user_id VARCHAR(64) NOT NULL,
+                             band_id VARCHAR(26) NOT NULL,
+                             user_id VARCHAR(26) NOT NULL,
                              position ENUM('VOCAL', 'GUITAR', 'BASS', 'DRUM', 'KEYBOARD', 'PRODUCER', 'ETC') NOT NULL,
                              joined_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                              FOREIGN KEY (band_id) REFERENCES band(band_id) ON DELETE CASCADE

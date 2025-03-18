@@ -4,4 +4,4 @@ rootProject.name = 'msa_Bnad'
 include "service"
 include "service:band"
 include"service:matching"
-include "service:band-info"
+include "service:info"
