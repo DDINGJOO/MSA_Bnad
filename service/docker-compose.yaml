@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+
+  band-service:
+    build:
+      context: ./band
+      dockerfile: Dockerfile
+    ports:
+      - "9400:9400"
+
+
+

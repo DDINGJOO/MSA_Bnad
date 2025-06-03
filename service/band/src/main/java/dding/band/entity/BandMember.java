@@ -1,30 +1,49 @@
 package dding.band.entity;
 
+
 import dding.band.config.eums.BandPosition;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Data
 @Table(name = "band_member")
-@Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
 public class BandMember {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String bandId;  // Band 식별자
+    @ManyToOne
+    @JoinColumn(name = "band_id", nullable = false)
+    private Band band;
 
-    private String userId;  // 참여 유저 ID
+    @Column(nullable = false)
+    private String userId;
 
     @Enumerated(EnumType.STRING)
-    private BandPosition position; // 실제 맡고 있는 포지션
+    private BandPosition position;
 
+    private String description;//짧은 소개
+    private boolean isConfirmed;//지원가 구분
+
+
+    private LocalDateTime confirmedAt;
     private LocalDateTime joinedAt;
+
+
+    public Boolean getIsConfirmed() {
+        return isConfirmed;
+    }
+    public void setIsConfirmed(Boolean isConfirmed) {
+        this.isConfirmed = isConfirmed;
+    }
+
 }
